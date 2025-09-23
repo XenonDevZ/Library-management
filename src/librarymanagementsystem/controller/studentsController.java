@@ -260,17 +260,83 @@ public class studentsController implements Initializable {
         }
     }
 
+    private boolean checkIfEmailExists() {
+        PreparedStatement pre = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM Student WHERE Email = ?";
+        try {
+            conn = DatabaseConnection.Connect();
+            pre = conn.prepareStatement(query);
+            pre.setString(1, studentEmail.getText());
+            rs = pre.executeQuery();
+            if (rs.next()) {
+                librarymanagementsystem.model.Alert alert = new librarymanagementsystem.model.Alert(
+                        Alert.AlertType.ERROR,
+                        "Email validation",
+                        "Email already exists!"
+                );
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            try {
+                if (pre != null) pre.close();
+                if (rs != null) rs.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e1) {
+                System.err.println(e1);
+            }
+        }
+        return true;
+    }
+
     private boolean validatePhoneNumber() {
-        Pattern p1 = Pattern.compile("[+]{1}265[8]{2}[0-9]{7}");
-        Pattern p2 = Pattern.compile("[+]{1}265[9]{2}[0-9]{7}");
-        Matcher m1 = p1.matcher(studentPhone.getText());
-        Matcher m2 = p2.matcher(studentPhone.getText());
-        if (m1.find() && m1.group().equals(studentPhone.getText()) || m2.find() && m2.group().equals(studentPhone.getText())) {
+        Pattern p = Pattern.compile("09[0-9]{9}");
+        Matcher m = p.matcher(studentPhone.getText());
+        if (m.find() && m.group().equals(studentPhone.getText())) {
             return true;
         } else {
-            librarymanagementsystem.model.Alert alert = new librarymanagementsystem.model.Alert(Alert.AlertType.ERROR, "Phone number validation", "Please enter a valid phone number!");
+            librarymanagementsystem.model.Alert alert = new librarymanagementsystem.model.Alert(
+                    Alert.AlertType.ERROR,
+                    "Phone number validation",
+                    "Please enter a valid Philippine phone number (e.g., 09XXXXXXXXX)!"
+            );
             return false;
         }
+    }
+
+    private boolean checkIfPhoneExists() {
+        PreparedStatement pre = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM Student WHERE Phone = ?";
+        try {
+            conn = DatabaseConnection.Connect();
+            pre = conn.prepareStatement(query);
+            pre.setString(1, studentPhone.getText());
+            rs = pre.executeQuery();
+            if (rs.next()) {
+                librarymanagementsystem.model.Alert alert = new librarymanagementsystem.model.Alert(
+                        Alert.AlertType.ERROR,
+                        "Phone number validation",
+                        "Phone number already exists!"
+                );
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            try {
+                if (pre != null) pre.close();
+                if (rs != null) rs.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e1) {
+                System.err.println(e1);
+            }
+        }
+        return true;
     }
 
     private boolean checkIFIDExist() {
@@ -435,7 +501,7 @@ public class studentsController implements Initializable {
         try {
             conn = DatabaseConnection.Connect();
             pre = conn.prepareStatement(query);
-            if (validateFields() && validateID() && checkIFIDExist() && validateName() && validateEmail() && validatePhoneNumber()) {
+            if (validateFields() && validateID() && checkIFIDExist() && validateName() && validateEmail() && checkIfEmailExists() && validatePhoneNumber() && checkIfPhoneExists()) {
                 pre.setString(1, studentID.getText().trim());
                 pre.setString(2, studentName.getText().trim());
                 pre.setString(3, studentEmail.getText().trim());
