@@ -7,104 +7,171 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderpane" prefHeight="651.0" prefWidth="1141.0" style="-fx-border-color: #2b579a;" stylesheets="@../css/main.css" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="librarymanagementsystem.controller.studentPanelController">
+<BorderPane fx:id="borderpane" prefHeight="651.0" prefWidth="1141.0"
+            style="-fx-background-color: #f4f8fb; -fx-border-color: #2b579a; -fx-border-radius: 16; -fx-effect: dropshadow(gaussian, #2b579a44, 8, 0, 0, 2);"
+            stylesheets="@../css/main.css"
+            xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            fx:controller="librarymanagementsystem.controller.studentPanelController">
+
+    <!-- Sidebar Navigation -->
     <left>
-        <VBox fx:id="homeButtonsPanel" maxWidth="221.0" minWidth="140.0" prefHeight="649.0" prefWidth="221.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="homeButtonsPanel"
+              maxWidth="260.0" minWidth="180.0"
+              prefHeight="651.0" prefWidth="260.0"
+              spacing="16"
+              alignment="TOP_CENTER"
+              style="-fx-background-color: linear-gradient(to bottom, #2b579a, #1e3876); -fx-border-radius: 16 0 0 16;">
             <children>
-                <JFXButton fx:id="back" contentDisplay="GRAPHIC_ONLY" onAction="#logout" prefHeight="43.0" prefWidth="43.0" ripplerFill="#2b579a" style="-fx-border-color: #ffffff; -fx-border-radius: 2000; -fx-border-width: 2;">
-                    <VBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                    </VBox.margin>
+                <!-- Logo/Header -->
+                <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 18 0 12 18;">
+                    <children>
+                        <FontAwesomeIconView glyphName="GRADUATION_CAP" fill="#ffffff" size="28"/>
+                        <Label text="Student Panel"
+                               style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                    </children>
+                </HBox>
+                <Separator style="-fx-background-color: #ffffff33;" />
+                <!-- Navigation Buttons -->
+                <JFXButton fx:id="home"
+                           onAction="#loadHomePanel"
+                           prefHeight="44.0" prefWidth="210.0"
+                           text="Home"
+                           textFill="WHITE"
+                           style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-background-color: transparent; -fx-border-color: transparent;">
                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" rotate="180.0" size="25" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="18"/>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="home" alignment="TOP_LEFT" onAction="#loadHomePanel" prefHeight="40.0" prefWidth="222.0" text="Home" textAlignment="JUSTIFY" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets left="1.0" right="1.0" top="20.0" />
-                    </VBox.margin>
+                <JFXButton fx:id="books"
+                           onAction="#loadBooksPanel"
+                           prefHeight="44.0" prefWidth="210.0"
+                           text="My Books"
+                           textFill="WHITE"
+                           style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="18"/>
+                    </graphic>
                 </JFXButton>
-                <JFXButton fx:id="books" alignment="TOP_LEFT" onAction="#loadBooksPanel" prefHeight="40.0" prefWidth="224.0" text="My Books" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets left="1.0" right="1.0" />
-                    </VBox.margin>
+                <JFXButton fx:id="fines"
+                           onAction="#loadFinesPanel"
+                           prefHeight="44.0" prefWidth="210.0"
+                           text="Fines"
+                           textFill="WHITE"
+                           style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="MONEY" size="18"/>
+                    </graphic>
                 </JFXButton>
-                <JFXButton fx:id="fines" alignment="TOP_LEFT" onAction="#loadFinesPanel" prefHeight="40.0" prefWidth="227.0" text="Fines" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
+                <JFXButton fx:id="notifications"
+                           onAction="#loadNotificationsPanel"
+                           prefHeight="44.0" prefWidth="210.0"
+                           text="Notifications"
+                           textFill="WHITE"
+                           style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BELL" size="18"/>
+                    </graphic>
                 </JFXButton>
-                <JFXButton fx:id="notifications" alignment="TOP_LEFT" onAction="#loadNotificationsPanel" prefHeight="40.0" prefWidth="226.0" text="Notifications" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
+                <JFXButton fx:id="profile"
+                           onAction="#loadProfilePanel"
+                           prefHeight="44.0" prefWidth="210.0"
+                           text="Profile"
+                           textFill="WHITE"
+                           style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="18"/>
+                    </graphic>
                 </JFXButton>
-                <JFXButton fx:id="profile" alignment="TOP_LEFT" onAction="#loadProfilePanel" prefHeight="40.0" prefWidth="228.0" text="Profile" textAlignment="JUSTIFY" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets left="1.0" right="1.0" />
-                    </VBox.margin>
+                <Separator style="-fx-background-color: #ffffff33;" />
+                <!-- Spacer -->
+                <Region VBox.vgrow="ALWAYS"/>
+                <!-- Actions -->
+                <JFXButton fx:id="back"
+                           contentDisplay="GRAPHIC_ONLY"
+                           onAction="#logout"
+                           prefHeight="44.0" prefWidth="44.0"
+                           ripplerFill="#2b579a"
+                           style="-fx-border-color: #ffffff; -fx-border-radius: 2000; -fx-border-width: 2; -fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" rotate="180.0" size="24"/>
+                    </graphic>
                 </JFXButton>
-                <JFXButton fx:id="close" alignment="TOP_LEFT" onAction="#closeApp" prefHeight="40.0" prefWidth="232.0" text="Close" textAlignment="JUSTIFY" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets left="1.0" right="1.0" />
-                    </VBox.margin>
+                <JFXButton fx:id="close"
+                           onAction="#closeApp"
+                           prefHeight="44.0" prefWidth="210.0"
+                           text="Close"
+                           textFill="WHITE"
+                           style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="POWER_OFF" size="18"/>
+                    </graphic>
                 </JFXButton>
             </children>
         </VBox>
     </left>
+
+    <!-- Main Dashboard Content -->
     <center>
-        <AnchorPane prefHeight="651.0" prefWidth="920.0">
+        <StackPane prefHeight="651.0" prefWidth="881.0" style="-fx-background-color: #ffffff; -fx-background-radius: 0 16 16 0;">
             <children>
-                <Label text="Student Dashboard" layoutX="30" layoutY="20" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-                <TabPane fx:id="studentTabPane" layoutX="30" layoutY="60" prefWidth="850" prefHeight="550">
-                    <tabs>
-                        <Tab text="My Books">
-                            <TableView fx:id="booksTable" prefHeight="400" prefWidth="800">
-                                <columns>
-                                    <TableColumn text="Book ID" fx:id="colBookId"/>
-                                    <TableColumn text="Book Name" fx:id="colBookName"/>
-                                    <TableColumn text="Borrowed Date" fx:id="colBorrowedDate"/>
-                                    <TableColumn text="Due Date" fx:id="colDueDate"/>
-                                </columns>
-                            </TableView>
-                        </Tab>
-                        <Tab text="Fines">
-                            <TableView fx:id="finesTable" prefHeight="400" prefWidth="800">
-                                <columns>
-                                    <TableColumn text="Book Name" fx:id="colFineBookName"/>
-                                    <TableColumn text="Amount" fx:id="colFineAmount"/>
-                                    <TableColumn text="Status" fx:id="colFineStatus"/>
-                                </columns>
-                            </TableView>
-                        </Tab>
-                        <Tab text="Notifications">
-                            <ListView fx:id="notificationsList" prefHeight="400" prefWidth="800"/>
-                        </Tab>
-                        <Tab text="Profile">
-                            <AnchorPane>
-                                <children>
-                                    <Label text="Name:" layoutX="20" layoutY="30"/>
-                                    <Label fx:id="studentName" layoutX="100" layoutY="30"/>
-                                    <Label text="Email:" layoutX="20" layoutY="70"/>
-                                    <Label fx:id="studentEmail" layoutX="100" layoutY="70"/>
-                                </children>
-                            </AnchorPane>
-                        </Tab>
-                    </tabs>
-                </TabPane>
+                <VBox spacing="24" style="-fx-padding: 32 32 32 32;">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <children>
+                                <FontAwesomeIconView glyphName="DASHBOARD" fill="#2b579a" size="32"/>
+                                <Label text="Student Dashboard"
+                                       style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2b579a;" />
+                            </children>
+                        </HBox>
+                        <TabPane fx:id="studentTabPane"
+                                 prefWidth="817.0" prefHeight="505.0"
+                                 style="-fx-background-color: #f4f8fb; -fx-background-radius: 8;">
+                            <tabs>
+                                <Tab text="My Books">
+                                    <TableView fx:id="booksTable" prefHeight="400" prefWidth="800"
+                                               style="-fx-background-color: #ffffff; -fx-border-radius: 8;">
+                                        <columns>
+                                            <TableColumn text="Book ID" fx:id="colBookId"/>
+                                            <TableColumn text="Book Name" fx:id="colBookName"/>
+                                            <TableColumn text="Borrowed Date" fx:id="colBorrowedDate"/>
+                                            <TableColumn text="Due Date" fx:id="colDueDate"/>
+                                        </columns>
+                                    </TableView>
+                                </Tab>
+                                <Tab text="Fines">
+                                    <TableView fx:id="finesTable" prefHeight="400" prefWidth="800"
+                                               style="-fx-background-color: #ffffff; -fx-border-radius: 8;">
+                                        <columns>
+                                            <TableColumn text="Book Name" fx:id="colFineBookName"/>
+                                            <TableColumn text="Amount" fx:id="colFineAmount"/>
+                                            <TableColumn text="Status" fx:id="colFineStatus"/>
+                                        </columns>
+                                    </TableView>
+                                </Tab>
+                                <Tab text="Notifications">
+                                    <ListView fx:id="notificationsList" prefHeight="400" prefWidth="800"
+                                              style="-fx-background-color: #ffffff; -fx-border-radius: 8;" />
+                                </Tab>
+                                <Tab text="Profile">
+                                    <GridPane hgap="18" vgap="16" style="-fx-padding: 32 24 24 40;">
+                                        <children>
+                                            <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                                                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                                            <Label fx:id="studentName" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                                   style="-fx-font-size: 16px; -fx-text-fill: #2b579a;"/>
+                                            <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                                                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                                            <Label fx:id="studentEmail" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                                   style="-fx-font-size: 16px; -fx-text-fill: #2b579a;"/>
+                                        </children>
+                                    </GridPane>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </VBox>
             </children>
-        </AnchorPane>
+        </StackPane>
     </center>
 </BorderPane>
