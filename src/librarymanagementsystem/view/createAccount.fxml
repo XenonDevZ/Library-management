@@ -49,7 +49,7 @@
             <Font size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="82.0" layoutY="267.0" onAction="#caancel" prefHeight="25.0" prefWidth="168.0" style="-fx-border-color: #FFFFFF;" text="Back" textFill="WHITE">
+      <JFXButton layoutX="82.0" layoutY="267.0" onAction="#cancel" prefHeight="25.0" prefWidth="168.0" style="-fx-border-color: #FFFFFF;" text="Back" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
