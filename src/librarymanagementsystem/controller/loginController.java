@@ -160,6 +160,17 @@ public class loginController implements Initializable {
                             thread.start();
                             break;
                         }
+                        case "Student": {
+                            userID = rs.getInt(1);
+                            userName = rs.getString(4); // or another field for name
+                            Alert alert = new Alert(AlertType.INFORMATION, "Message", "Access granted");
+                            // Load the student dashboard panel (make sure you create this FXML view)
+                            LoadStage loadStage = new LoadStage("/librarymanagementsystem/view/studentPanel.fxml", close);
+                            Thread thread = new Thread(new showMessage(rs.getString(4)));
+                            thread.setDaemon(true);
+                            thread.start();
+                            break;
+                        }
                     }
                 } else {
                     Alert alert = new Alert(AlertType.INFORMATION, "Information", "Username or password is not correct");
